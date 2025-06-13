@@ -13,15 +13,23 @@ class _MyAppState extends State<Login> {
     return MaterialApp(
       home: Scaffold(
         
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/crumbled paper.jpg'),
+                fit: BoxFit.cover,
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'FoundIt',
               style: TextStyle(
                 fontSize: 35,
-                color: Colors.blue,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -34,7 +42,7 @@ class _MyAppState extends State<Login> {
                       padding: const EdgeInsets.symmetric(horizontal:15),
                       child: TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Email',
                           hintText: 'Enter Email',
                           prefixIcon: Icon(Icons.email),
@@ -48,12 +56,12 @@ class _MyAppState extends State<Login> {
                         },
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: TextFormField(
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter Password',
                           prefixIcon: Icon(Icons.password),
@@ -67,25 +75,30 @@ class _MyAppState extends State<Login> {
                         },
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal:35),
                       child: MaterialButton(
                         minWidth: double.infinity,
                         onPressed:(){},
-                        child: Text('Login'),
-                        color: Colors.blue,
-                        textColor: Colors.white,
+                        child: const Text('Login'),
+                        color: Colors.white,
+                        textColor: Colors.black,
                         ),
-                    )
-
+                    ),
+                    
                   ],
+                  
+                
                 ),
                 ),
             ),
           ],
+                )
+              ),
+          
+          )
         ),
-      ),
-    );
+      );
   }
 }
