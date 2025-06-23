@@ -1,17 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:lost_and_found_app/login.dart';
 
 void main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
-  runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/':(context) => Login(),
-    },
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  
+  runApp(const MaterialApp(
+    title: 'FoundIt',
+    debugShowCheckedModeBanner: false,
+    home: Login(),
   ));
+  
 }
 
