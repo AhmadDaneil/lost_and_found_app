@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:865840769017:android:c4edee77458b3b713f7f28",
+        "mobilesdk_app_id": "1:865840769017:android:36e382b3ae7a95dc3f7f28",
         "android_client_info": {
-          "package_name": "com.thefinder.foundit"
+          "package_name": "com.example.lost_and_found_app"
         }
       },
       "oauth_client": [],
