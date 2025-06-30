@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'mobile/auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,6 +15,7 @@ class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +48,12 @@ class _LoginState extends State<Login> {
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Email',
-                          labelStyle: const TextStyle(color: Colors.black),
+                          labelStyle: TextStyle(color: Colors.black),
                           hintText: 'Enter Email',
-                          prefixIcon: const Icon(Icons.email, color: Colors.black),
-                          border: const OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.email, color: Colors.black),
+                          border:  OutlineInputBorder(),
                           filled: true,
                           fillColor: Colors.white,
                         ),
@@ -61,12 +65,12 @@ class _LoginState extends State<Login> {
                       TextFormField(
                         controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Password',
-                          labelStyle: const TextStyle(color: Colors.black),
+                          labelStyle: TextStyle(color: Colors.black),
                           hintText: 'Enter Password',
-                          prefixIcon: const Icon(Icons.lock, color: Colors.black),
-                          border: const OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.lock, color: Colors.black),
+                          border: OutlineInputBorder(),
                           filled: true,
                           fillColor: Colors.white,
                         ),
@@ -85,7 +89,15 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            Navigator.pushReplacementNamed(context, '/home');
+                            AuthService().signIn(
+                              email: _emailController.text.trim(), 
+                              password: _passwordController.text.trim(), 
+                              context: context
+                              );
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const Home()),
+                            );
                           }
                         },
                         child: const Text('Login'),
