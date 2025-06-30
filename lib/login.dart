@@ -1,106 +1,103 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
 
   @override
-  State<Login> createState() => _MyAppState();
+  State<Login> createState() => _LoginState();
 }
 
-class _MyAppState extends State<Login> {
+class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/crumbled paper.jpg'),
-                fit: BoxFit.cover,
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/crumbled paper.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Text(
+                  'FoundIt',
+                  style: GoogleFonts.orbitron(
+                    fontSize: 35,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'FoundIt',
-              style: TextStyle(
-                fontSize: 35,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30),
-              child: Form(
-                child:Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:15),
-                      child: TextFormField(
+                const SizedBox(height: 30),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Email',
+                          labelStyle: const TextStyle(color: Colors.black),
                           hintText: 'Enter Email',
-                          prefixIcon: Icon(Icons.email),
-                          border: OutlineInputBorder(), 
+                          prefixIcon: const Icon(Icons.email, color: Colors.black),
+                          border: const OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        onChanged: (String value) {
-                                    
-                        },
-                        validator: (value) {
-                          return value!.isEmpty ? 'Please enter email' : null; 
-                        },
+                        style: const TextStyle(color: Colors.black),
+                        validator: (value) =>
+                            value!.isEmpty ? 'Please enter email' : null,
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
                           labelText: 'Password',
+                          labelStyle: const TextStyle(color: Colors.black),
                           hintText: 'Enter Password',
-                          prefixIcon: Icon(Icons.password),
-                          border: OutlineInputBorder(), 
+                          prefixIcon: const Icon(Icons.lock, color: Colors.black),
+                          border: const OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        onChanged: (String value) {
-                                    
-                        },
-                        validator: (value) {
-                          return value!.isEmpty ? 'Please enter password' : null; 
-                        },
+                        style: const TextStyle(color: Colors.black),
+                        validator: (value) =>
+                            value!.isEmpty ? 'Please enter password' : null,
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal:35),
-                      child: MaterialButton(
+                      const SizedBox(height: 30),
+                      MaterialButton(
                         minWidth: double.infinity,
-                        onPressed:(){
-                          
+                        color: Colors.black,
+                        textColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          }
                         },
                         child: const Text('Login'),
-                        color: Colors.white,
-                        textColor: Colors.black,
-                        ),
-                    ),
-                    
-                  ],
-                  
-                
+                      ),
+                    ],
+                  ),
                 ),
-                ),
+              ],
             ),
-          ],
-                )
-              ),
-          
-          )
+          ),
         ),
-      );
+      ),
+    );
   }
 }
