@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lost_and_found_app/mobile/register.dart';
 import 'mobile/auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 import 'home.dart';
 
@@ -102,6 +104,19 @@ class _LoginState extends State<Login> {
                         },
                         child: const Text('Login'),
                       ),
+                      const SizedBox(height: 30),
+                      Center(
+                        child:GestureDetector(
+                          onTap: () {
+                          Get.to(() => const Register());
+                          },
+                          child:const Text('Register Account',
+                          style: TextStyle(color: Colors.red,
+                          decoration: TextDecoration.underline,
+                          ),
+                          ),
+                        )
+                      )
                     ],
                   ),
                 ),
