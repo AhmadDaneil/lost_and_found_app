@@ -5,9 +5,10 @@ import 'package:lost_and_found_app/login.dart';
 import 'package:get/get.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
